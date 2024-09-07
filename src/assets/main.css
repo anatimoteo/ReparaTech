@@ -1,0 +1,35 @@
+:root {
+  --primary: #002266;
+  --blue: #1C2E5C;
+  --gray-100: #D9D9D9;
+  --gray-200: #989898;
+  --font-family-base: "Genos", sans-serif;
+  --font-family--heading: "Gruppo", sans-serif;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--blue);
+  color: white;
+}
+
+input{
+  width: 100%;
+  height: 28px;
+  background-color: var(--gray-100);
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+button{
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--primary);
+  font-family: var(--font-family-base);
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  min-width: 120px;
+}

@@ -1,18 +1,17 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-function login () {
-  router.push("/")
+function login() {
+  router.push('/')
 }
 </script>
 
 <template>
   <main class="login-page">
-    
     <div class="login-container">
-      <img src="/src/assets/imagens/logo.png" alt="logo ReparaTech>" class="logo">
+      <img src="/src/assets/imagens/logo.png" alt="logo ReparaTech>" class="logo" />
 
       <form action="" class="login-form">
         <h1 class="heading">LOGIN</h1>
@@ -27,20 +26,18 @@ function login () {
         <button type="submit" @click="login" class="">Entrar</button>
       </form>
     </div>
-
   </main>
 </template>
 
 <style scoped>
-
-.logo{
+.logo {
   margin: 40px auto;
   width: 160px;
   display: flex;
   flex-direction: column;
 }
 
-.login-container{
+.login-container {
   position: absolute;
   left: 50%;
   top: 40%;
@@ -60,20 +57,18 @@ function login () {
   box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.684);
 }
 
-.heading{
+.heading {
   margin: 20px auto;
   font-family: var(--font-family--heading);
   font-weight: 100;
   color: var(--blue);
 }
 
-.input-group{
+.input-group {
   margin: 18px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   text-align: start;
 }
-
-
 </style>

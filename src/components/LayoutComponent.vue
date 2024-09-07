@@ -7,7 +7,8 @@ import { RouterLink } from 'vue-router';
 <template>
     <main class="page">
         <nav class="menu">
-            <RouterLink to="/">Serviços</RouterLink>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/services">Serviços</RouterLink>
             <RouterLink to="/login">Sair</RouterLink>
         </nav>
         <div class="page-content">
@@ -33,6 +34,7 @@ import { RouterLink } from 'vue-router';
 
 .page-content {
     background-color: white;
+    color: var(--blue);
     width: 100%;
     max-height: 100vh;
     overflow-y: scroll;

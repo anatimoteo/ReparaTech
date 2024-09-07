@@ -34,5 +34,7 @@ import { RouterLink } from 'vue-router';
 .page-content {
     background-color: white;
     width: 100%;
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 </style>

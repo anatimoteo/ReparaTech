@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function login () {
+  router.push("/")
+}
+</script>
 
 <template>
   <main class="login-page">
@@ -16,7 +24,7 @@
           <label for="password">Senha</label>
           <input type="password" name="password" id="password" />
         </div>
-        <button type="submit" class="">Entrar</button>
+        <button type="submit" @click="login" class="">Entrar</button>
       </form>
     </div>
 

@@ -7,8 +7,8 @@ import { RouterLink } from 'vue-router';
 <template>
     <main class="page">
         <nav class="menu">
-            <RouterLink to="/services">Serviços</RouterLink>
-            <RouterLink to="/">Sair</RouterLink>
+            <RouterLink to="/">Serviços</RouterLink>
+            <RouterLink to="/login">Sair</RouterLink>
         </nav>
         <div class="page-content">
             <slot></slot>

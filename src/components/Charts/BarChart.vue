@@ -9,6 +9,7 @@ import {
   CategoryScale,
   LinearScale
 } from 'chart.js'
+import { MAIN_SERVICES_CHART } from '@/util/chartData';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
@@ -18,28 +19,25 @@ export default {
   computed: {
     chartStyles() {
       return {
-        height: '260px',
         position: 'relative'
       }
     }
   },
   data() {
-    return {
-      chartData: {
-        title: 'Status do serviço',
-        labels: ['January', 'February', 'March', 'JOSE'],
-        datasets: [{ data: [40, 20, 12, 40] }]
-      },
-      chartOptions: {
-        responsive: true
-      }
-    }
+    return MAIN_SERVICES_CHART
   }
 }
 </script>
 
 <template>
-  <Bar :style="chartStyles" id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <div class="chart-container">
+    <Bar :style="chartStyles" id="my-chart-id" :options="chartOptions" :data="chartData" />
+  </div>
+
 </template>
 
-<style scoped></style>
+<style scoped>
+.chart-container {
+  height: 250px;
+}
+</style>

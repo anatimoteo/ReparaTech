@@ -36,5 +36,6 @@ import { RouterLink } from 'vue-router';
     width: 100%;
     max-height: 100vh;
     overflow-y: scroll;
+    padding: 50px;
 }
 </style>

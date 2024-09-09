@@ -22,8 +22,9 @@ input {
   height: 28px;
   background-color: var(--gray-100);
   border-radius: 8px;
-  border: none;
+  border: 1px solid var(--gray-200);
   outline: none;
+  font-family: var(--font-family-base);
 }
 
 button {
@@ -45,5 +46,5 @@ a {
 }
 
 a::before {
-  content: "> ";
+  content: ">";
 }

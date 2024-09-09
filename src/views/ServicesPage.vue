@@ -24,10 +24,30 @@ import LayoutComponent from '@/components/LayoutComponent.vue'
         <td>R$200</td>
       </tr>
     </table>
+ 
+    <div class="prazo-medio">
+      <h1>Prazo Médio</h1>
+      <div class="card">
+        <span>Troca de Tela</span>
+        <span> 3 horas</span>
+      </div>
 
-    <h1>Prazo Médio</h1>
+      <div class="card">
+        <span>Reparo de Câmera</span>
+        <span>1 a 2 horas</span>
+      </div>
+
+      <div class="card">
+        <span>Troca de Bateria</span>
+        <span> 2 a 3 horas</span>
+      </div>
+
+    </div>
+
   </LayoutComponent>
 </template>
+
+
 <style scoped>
 table,
 th,
@@ -37,12 +57,38 @@ td {
   border-collapse: collapse;
   color: white;
   border-radius: 8px;
-  width: 500px;
+  width: 600px;
+  height: 50px;
   margin: auto;
+  font-size: 20px;
 }
 
 th,
 td {
   padding: 13px;
 }
+
+.prazo-medio {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.card {
+  display: inline-block;
+  background-color: var(--blue);
+  padding: 30px;
+  border-radius: 8px;
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+}
+
+.card span {
+  display: block;
+  color: white;
+  font-size: 20px ;
+}
+
+
+
 </style>

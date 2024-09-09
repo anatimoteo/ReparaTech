@@ -15,6 +15,7 @@ function login() {
 
       <form action="" class="login-form">
         <h1 class="heading">LOGIN</h1>
+
         <div class="input-group">
           <label for="user">Usuário</label>
           <input type="email" name="user" id="user" />

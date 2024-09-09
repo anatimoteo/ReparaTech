@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import LayoutComponent from '@/components/LayoutComponent.vue'
 
 const marcas = ['Samsung', 'Apple', 'Motorola', 'Xiaomi', 'Realme']
@@ -11,6 +11,26 @@ const equipamento = reactive({
   numeroserie: '',
   observacoes: ''
 })
+
+const equipamentos = ref([])
+
+const enviarDados = (e) => {
+  e.preventDefault()
+
+  equipamentos.value.push({
+    nome: equipamento.nome,
+    marcas: equipamento.marcas,
+    modelo: equipamento.modelo,
+    numeroserie: equipamento.numeroserie
+  })
+
+  equipamento.nome = ''
+  equipamento.marcas = ''
+  equipamento.modelo = ''
+  equipamento.numeroserie = ''
+  equipamento.observacoes = ''
+}
+
 </script>
 
 <template>
@@ -54,24 +74,14 @@ const equipamento = reactive({
         <th>Modelo</th>
         <th>Número de série</th>
       </tr>
-      <tr>
-        <td>{{ equipamento.nome }}</td>
-        <td>{{ equipamento.marcas }}</td>
-        <td>{{ equipamento.modelo }}</td>
-        <td>{{ equipamento.numeroserie }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+
+      <tr v-for="equip in equipamentos" :key="equip.numeroserie">
+  <td>{{ equip.nome }}</td> 
+  <td>{{ equip.marcas }}</td>
+  <td>{{ equip.modelo }}</td>
+  <td>{{ equip.numeroserie }}</td>
+</tr>
+
     </table>
   </LayoutComponent>
 </template>
@@ -101,11 +111,14 @@ label {
 input,
 select {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 20px;
   border: 1px solid var(--gray-200);
   border-radius: 5px;
-
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 h1 {
@@ -113,19 +126,28 @@ h1 {
   margin-bottom: 25px;
 }
 
-th,
-td {
-  background-color: var(--gray-100);
+table {
+  width: 100%;
   border-collapse: collapse;
-  color: var(--blue);
-  border-radius: 8px;
-  width: 400px;
-  height: 50px;
-  font-size: 18px;
+  margin-top: 30px;
+  table-layout: fixed;
 }
 
 th,
 td {
-  padding: 13px;
+  background-color: var(--gray-100);
+  color: var(--blue);
+  padding: 10px;
+  text-align: left;
+  border: 1px solid var(--gray-200);
+  word-wrap: break-word;
+}
+
+td {
+  height: 40px;
+}
+
+th {
+  font-weight: 600;
 }
 </style>

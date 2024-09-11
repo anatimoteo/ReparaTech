@@ -1,13 +1,9 @@
 <script setup>
-import LayoutComponent from '@/components/LayoutComponent.vue';
+import LayoutComponent from '@/components/LayoutComponent.vue'
 </script>
 <template>
-    <LayoutComponent>
-        <h1>Página de clientes</h1>  <div class="favorite-icon">⭐</div>
-
-        
- </LayoutComponent>    
+  <LayoutComponent>
+  <h1>oi</h1>
+</LayoutComponent>
 </template>
-
-<style scoped>
-</style>
+<style scoped></style>

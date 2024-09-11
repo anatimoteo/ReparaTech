@@ -1,94 +1,119 @@
 <script setup>
+import { ref } from 'vue'
 import LayoutComponent from '@/components/LayoutComponent.vue'
+
+const servicos = ['Troca de tela', 'Troca de Bateria', 'Reparo de Câmera', 'Desbloqueio de Dispositivo']
+
+const cadastroServico = ref({
+  servico: '',
+  descricao: '',
+  preco: null,
+  duracao: ''
+})
+
 </script>
+
 <template>
+
   <LayoutComponent>
-    <table>
-      <tr>
-        <th colspan="2">Principais Serviços</th>
-        <th>Faturamentos</th>
-      </tr>
-      <tr>
-        <td>Troca de Tela</td>
-        <td>Descrição</td>
-        <td>R$350</td>
-      </tr>
-      <tr>
-        <td>Reparo de Câmera</td>
-        <td>Descrição</td>
-        <td>R$250</td>
-      </tr>
-      <tr>
-        <td>Reparo de Bateria</td>
-        <td>Descrição</td>
-        <td>R$200</td>
-      </tr>
-    </table>
- 
-    <div class="prazo-medio">
-      <h1>Prazo Médio</h1>
-      <div class="card">
-        <span>Troca de Tela</span>
-        <span> 3 horas</span>
-      </div>
+    <div class="add-servico">
+      <h2>Adicionar Novo Serviço</h2>
 
-      <div class="card">
-        <span>Reparo de Câmera</span>
-        <span>1 a 2 horas</span>
-      </div>
+      <label for="servico">Tipo de serviço</label>
+      <select id="servico">
+        <option value="" disabled>Selecione um serviço</option>
+        <option v-for="servico in servicos" :key="servico" :value="servicos">{{ servico }}</option>
+      </select>
 
-      <div class="card">
-        <span>Troca de Bateria</span>
-        <span> 2 a 3 horas</span>
-      </div>
+      <label for="servico-descricao">Descrição do Serviço</label>
+      <input
+        v-model="cadastroServico.descricao"
+        id="servico-descricao"
+        type="text"
+        placeholder="Descrição do serviço"
+    />
 
+      <label for="servico-preco">Preço do Serviço (R$)</label>
+      <input v-model="cadastroServico.preco" id="servico-preco" type="number" placeholder="Preço" />
+
+      <label for="servico-duracao">Duração do Serviço</label>
+      <input
+        v-model="cadastroServico.duracao"
+        id="servico-duracao"
+        type="text"
+        placeholder="Duração (ex: 2 horas)"
+      />
+
+      <button @click="addServico">Adicionar Serviço</button>
     </div>
 
+  
   </LayoutComponent>
 </template>
 
-
 <style scoped>
-table,
-th,
-td {
-  background-color: var(--blue);
-  border: 1px solid rgb(255, 255, 255);
-  border-collapse: collapse;
-  color: white;
-  border-radius: 8px;
-  width: 600px;
-  height: 50px;
-  margin: auto;
-  font-size: 20px;
-}
-
-th,
-td {
-  padding: 13px;
-}
-
-.prazo-medio {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.card {
-  display: inline-block;
-  background-color: var(--blue);
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
   padding: 30px;
-  border-radius: 8px;
-  margin: 10px;
-  width: 150px;
-  text-align: center;
+  background-color: var(--gray-100);
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
 }
 
-.card span {
-  display: block;
+.add-servico {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: var(--blue);
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
   color: white;
-  font-size: 20px ;
 }
 
+label {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
 
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: 5px;
+  background-color: white;
+  font-family: var( --font-family-base);
+  font-size: 17px;
+}
+
+.add-servico button {
+  padding: 10px 20px;
+  background-color: var(--gray-200);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-servico button:hover {
+  background-color: var(--gray-100);
+}
+
+.lista-servicos {
+  margin-top: 30px;
+}
 
 </style>

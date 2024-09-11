@@ -5,8 +5,8 @@ import LayoutComponent from '@/components/LayoutComponent.vue'
 const marcas = ['Samsung', 'Apple', 'Motorola', 'Xiaomi', 'Realme']
 
 const equipamento = reactive({
-  equipamento: '',
-  marcas: [],
+  nome: '',
+  marcas: '',
   modelo: '',
   numeroserie: '',
   observacoes: ''
@@ -21,7 +21,8 @@ const enviarDados = (e) => {
     nome: equipamento.nome,
     marcas: equipamento.marcas,
     modelo: equipamento.modelo,
-    numeroserie: equipamento.numeroserie
+    numeroserie: equipamento.numeroserie,
+    observacoes: equipamento.observacoes,
   })
 
   equipamento.nome = ''
@@ -30,7 +31,6 @@ const enviarDados = (e) => {
   equipamento.numeroserie = ''
   equipamento.observacoes = ''
 }
-
 </script>
 
 <template>
@@ -73,15 +73,16 @@ const enviarDados = (e) => {
         <th>Marca</th>
         <th>Modelo</th>
         <th>Número de série</th>
+        <th>Observações</th>
       </tr>
 
       <tr v-for="equip in equipamentos" :key="equip.numeroserie">
-  <td>{{ equip.nome }}</td> 
-  <td>{{ equip.marcas }}</td>
-  <td>{{ equip.modelo }}</td>
-  <td>{{ equip.numeroserie }}</td>
-</tr>
-
+        <td>{{ equip.nome }}</td>
+        <td>{{ equip.marcas }}</td>
+        <td>{{ equip.modelo }}</td>
+        <td>{{ equip.numeroserie }}</td>
+        <td>{{ equip.observacoes }}</td>
+      </tr>
     </table>
   </LayoutComponent>
 </template>
@@ -98,8 +99,6 @@ const enviarDados = (e) => {
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-y: scroll;
-  overflow-x: hidden;
   margin-bottom: 50px;
 }
 
@@ -116,9 +115,8 @@ select {
   border: 1px solid var(--gray-200);
   border-radius: 5px;
   background-color: white;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  font-family: var( --font-family-base);
+  font-size: 17px;
 }
 
 h1 {
@@ -149,5 +147,21 @@ td {
 
 th {
   font-weight: 600;
+}
+
+.custom-submit {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  padding: 15px;
+  cursor: pointer;
+  line-height: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.custom-submit:hover {
+  background-color: var(--blue);
 }
 </style>

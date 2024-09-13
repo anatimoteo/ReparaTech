@@ -3,7 +3,7 @@ import LoginPage from '../views/LoginPage.vue'
 import HomePage from '../views/HomePage.vue'
 import ServicesPage from '../views/ServicesPage.vue'
 import ClientsPage from '../views/ClientsPage.vue'
-import EquipmentsPage from '../views/EquipmentsPage.vue'
+import PecasPage from '../views/PecasPage.vue'
 
 
 const router = createRouter({
@@ -33,9 +33,9 @@ const router = createRouter({
     },
 
     {
-      path: '/equipments',
-      name: 'equipments',
-      component: EquipmentsPage
+      path: '/pecas',
+      name: 'pecas',
+      component: PecasPage
     },
 
     {

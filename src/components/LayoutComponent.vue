@@ -25,6 +25,7 @@ onMounted(() => {
       <RouterLink to="/clients">Clientes</RouterLink>
       <RouterLink to="/services">Serviços</RouterLink>
       <RouterLink to="/pecas">Peças</RouterLink>
+      <RouterLink to="/financeiro">Financeiro</RouterLink>
       <RouterLink to="/login">Sair</RouterLink>
     </nav>
 

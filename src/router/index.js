@@ -4,6 +4,7 @@ import HomePage from '../views/HomePage.vue'
 import ServicesPage from '../views/ServicesPage.vue'
 import ClientsPage from '../views/ClientsPage.vue'
 import PecasPage from '../views/PecasPage.vue'
+import FinanceiroPage from '../views/FinanceiroPage.vue'
 
 
 const router = createRouter({
@@ -37,6 +38,12 @@ const router = createRouter({
       name: 'pecas',
       component: PecasPage
     },
+    {
+      path: '/financeiro',
+      name: 'financeiro',
+      component: FinanceiroPage
+    },
+
 
     {
       path: '/about',

@@ -6,13 +6,11 @@ import { Chart } from 'chart.js'
 const faturas = ref([
   { id: 1, cliente: 'Cliente A', servico: 'Serviço 1', valor: 1500.00, data: '01/09/2024' },
   { id: 2, cliente: 'Cliente B', servico: 'Serviço 2', valor: 2300.00, data: '05/09/2024' },
-  // Adicione mais faturas conforme necessário
 ])
 
 const entradaValor = ref('')
 const saidaValor = ref('')
-const caixaAtual = ref(5000.00) // Exemplo de valor inicial no caixa
-
+const caixaAtual = ref(5000.00)
 const registrarEntrada = () => {
   if (entradaValor.value) {
     caixaAtual.value += parseFloat(entradaValor.value)
@@ -28,93 +26,86 @@ const registrarSaida = () => {
 }
 
 onMounted(() => {
-  // Gráfico de receitas e despesas usando Chart.js
   const ctx = document.getElementById('financeChart')
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Receitas', 'Despesas'],
+      labels: ['Entrada', 'Saída'],
       datasets: [{
         label: 'Situação Financeira',
-        data: [caixaAtual.value, 1000], // Exemplo de dados de receitas e despesas
-        backgroundColor: ['#4CAF50', '#F44336'], // Verde para receitas, vermelho para despesas
+        data: [caixaAtual.value, 1000], 
+        backgroundColor: ['#4CAF50', '#F44336'], 
         borderWidth: 1
       }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  })
-})
+    }}
+  )})
 </script>
 
 <template>
-  <div class="financeiro">
-    <header class="header">
-      <h1>Visão Financeira da Empresa</h1>
-    </header>
+  <LayoutComponent>
+    <div class="financeiro">
+      <header class="header">
+        <h1>Visão Financeira da Empresa</h1>
+      </header>
 
-    <section class="faturas">
-      <h2>Faturas Emitidas</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Serviço</th>
-            <th>Valor (R$)</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="fatura in faturas" :key="fatura.id">
-            <td>{{ fatura.id }}</td>
-            <td>{{ fatura.cliente }}</td>
-            <td>{{ fatura.servico }}</td>
-            <td>{{ fatura.valor.toFixed(2) }}</td>
-            <td>{{ fatura.data }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <section class="faturas">
+        <h2>Faturas Emitidas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Serviço</th>
+              <th>Valor (R$)</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="fatura in faturas" :key="fatura.id">
+              <td>{{ fatura.id }}</td>
+              <td>{{ fatura.cliente }}</td>
+              <td>{{ fatura.servico }}</td>
+              <td>{{ fatura.valor.toFixed(2) }}</td>
+              <td>{{ fatura.data }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <section class="movimentacao">
-      <div class="caixa">
-        <h2>Movimentação Financeira</h2>
-        <div class="caixa-content">
-          <div>
-            <h3>Entrada de Recursos</h3>
-            <input v-model="entradaValor" placeholder="Valor de Entrada" type="number" />
-            <button @click="registrarEntrada">Registrar Entrada</button>
+      <section class="movimentacao">
+        <div class="caixa">
+          <h2>Movimentação Financeira</h2>
+          <div class="caixa-content">
+            <div>
+              <h3>Entrada de Recursos</h3>
+              <input v-model="entradaValor" placeholder="Valor de Entrada" type="number" />
+              <button @click="registrarEntrada">Registrar Entrada</button>
+            </div>
+
+            <div>
+              <h3>Saída de Recursos</h3>
+              <input v-model="saidaValor" placeholder="Valor de Saída" type="number" />
+              <button @click="registrarSaida">Registrar Saída</button>
+            </div>
           </div>
 
-          <div>
-            <h3>Saída de Recursos</h3>
-            <input v-model="saidaValor" placeholder="Valor de Saída" type="number" />
-            <button @click="registrarSaida">Registrar Saída</button>
-          </div>
+          <h3>Caixa Atual: R$ {{ caixaAtual.toFixed(2) }}</h3>
         </div>
+      </section>
 
-        <h3>Caixa Atual: R$ {{ caixaAtual.toFixed(2) }}</h3>
-      </div>
-    </section>
-
-    <section class="grafico">
-      <h2>Situação Financeira</h2>
-      <canvas id="financeChart"></canvas>
-    </section>
-  </div>
+      <section class="grafico">
+        <h2>Situação Financeira</h2>
+        <div class="grafico-container">
+          <canvas id="financeChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </LayoutComponent>
 </template>
 
 <style scoped>
 .financeiro {
   padding: 20px;
-  background-color: #f7f9fc;
 }
 
 .header {
@@ -124,7 +115,7 @@ onMounted(() => {
 
 .header h1 {
   color: #2C3E50;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -134,13 +125,17 @@ onMounted(() => {
 
 .faturas h2 {
   margin-bottom: 15px;
-  color: #2C3E50;
+  color: white;
+  text-align: center;
+  background-color: var(--blue);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -153,8 +148,8 @@ table th, table td {
 }
 
 table th {
-  background-color: #4CAF50;
-  color: #fff;
+  background-color: var(--blue);
+  color: white;
 }
 
 table td {
@@ -163,15 +158,16 @@ table td {
 
 .movimentacao {
   margin-bottom: 30px;
-  background-color: #fff;
+  background-color: var(--blue);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .movimentacao h2 {
   margin-bottom: 20px;
-  color: #2C3E50;
+  color: white;
 }
 
 .caixa-content {
@@ -191,37 +187,46 @@ input {
 button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: var(--gray-200);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: var(--gray-100);
 }
 
 .caixa h3 {
-  color: #2C3E50;
+  color: white;
   font-weight: bold;
 }
 
 .grafico {
-  background-color: #fff;
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 600px; /* Ajusta a largura da seção do gráfico */
 }
 
 .grafico h2 {
   margin-bottom: 20px;
-  color: #2C3E50;
+  color: var(--blue);
+  text-align: center;
+}
+
+.grafico-container {
+  height: 300px; /* Ajusta a altura do gráfico */
+  position: relative;
 }
 
 canvas {
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 </style>

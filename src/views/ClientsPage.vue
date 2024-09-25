@@ -165,7 +165,7 @@ export default {
 .btn-register {
   margin-bottom: 20px;
   padding: 10px 15px;
-  background-color: #4CAF50;
+  background-color: var(--blue);
   color: white;
   border: none;
   cursor: pointer;
@@ -187,7 +187,7 @@ export default {
 }
 
 .btn-view {
-  background-color: #2196F3;
+  background-color: var(--blue);
   color: white;
   padding: 5px 10px;
   border: none;
@@ -202,7 +202,7 @@ export default {
 }
 
 .btn-submit {
-  background-color: #4CAF50;
+  background-color: var(--blue);
   color: white;
   padding: 10px 15px;
   border: none;
@@ -230,7 +230,7 @@ export default {
 .btn-close {
   margin-top: 20px;
   padding: 10px 15px;
-  background-color: #f44336;
+  background-color: var(--primary);
   color: white;
   border: none;
   cursor: pointer;

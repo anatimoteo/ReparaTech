@@ -5,6 +5,7 @@ import ServicesPage from '../views/ServicesPage.vue'
 import ClientsPage from '../views/ClientsPage.vue'
 import PecasPage from '../views/PecasPage.vue'
 import FinanceiroPage from '../views/FinanceiroPage.vue'
+import RelatoriosPage from '@/views/RelatoriosPage.vue'
 
 
 const router = createRouter({
@@ -42,6 +43,12 @@ const router = createRouter({
       path: '/financeiro',
       name: 'financeiro',
       component: FinanceiroPage
+    },
+
+    {
+      path: '/relatorios',
+      name: 'relatorios',
+      component: RelatoriosPage
     },
 
 

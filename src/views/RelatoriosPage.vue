@@ -3,38 +3,37 @@ import BarChart from '@/components/Charts/BarChart.vue';
 import DoughnutChart from '@/components/Charts/DoughnutChart .vue';
 import LayoutComponent from '@/components/LayoutComponent.vue';
 
+
 </script>
 
 <template>
   <LayoutComponent>
     <div class="grid-container">
       <div class="grid-item">
-        <h1>Status dos serviços</h1>
+        <h1>Conversão de Orçamento em Serviços</h1>
+        <BarChart />
+      </div>
+      
+      <div class="grid-item">
+        <h1>Serviços Pendentes</h1>
         <DoughnutChart />
       </div>
+      
       <div class="grid-item">
-        <h1>Faturamento por serviço</h1>
+        <h1>Desempenho Clientes</h1>
+        <DoughnutChart />
+      </div>
+      
+      <div class="grid-item">
+        <h1>Principais Serviços Realizados</h1>
         <BarChart />
       </div>
-      <div class="grid-item">
-        <h1>Principais serviços</h1>
-        <BarChart />
-      </div>
-      <div class="grid-item">
-        <h1>Financeiro</h1>
-        <h2>Entrada/Saída</h2>
-        <div class="card"><span>R$200</span></div>
-        <div class="card"><span>R$80</span></div>
-      </div>
-    </div>
 
-    
-
+      </div>
   </LayoutComponent>
 </template>
 
 <style scoped>
-
 h1 {
   color: var(--blue);
   font-size: 1.5rem;
@@ -55,16 +54,13 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
-span{
+span {
   color: white;
   font-weight: 450;
   font-size: 36px;
-  
 }
-
 
 .grid-container {
   display: grid;
@@ -78,9 +74,10 @@ span{
   gap: 10px;
 }
 
-@media (max-width: 900px) {
-  .grid-container {
-  grid-template-columns: 1fr;
+.financeiro-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-}
+
 </style>

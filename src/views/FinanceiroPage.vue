@@ -11,34 +11,61 @@ const faturas = ref([
 const entradaValor = ref('')
 const saidaValor = ref('')
 const caixaAtual = ref(5000.00)
+const entradasTotais = ref(0)
+const saidasTotais = ref(0)
+
+let chartInstance = null;
+
 const registrarEntrada = () => {
   if (entradaValor.value) {
-    caixaAtual.value += parseFloat(entradaValor.value)
-    entradaValor.value = ''
+    const valor = parseFloat(entradaValor.value);
+    caixaAtual.value += valor;
+    entradasTotais.value += valor;
+    entradaValor.value = '';
+    atualizarGrafico();
   }
 }
 
 const registrarSaida = () => {
   if (saidaValor.value) {
-    caixaAtual.value -= parseFloat(saidaValor.value)
-    saidaValor.value = ''
+    const valor = parseFloat(saidaValor.value);
+    caixaAtual.value -= valor;
+    saidasTotais.value += valor;
+    saidaValor.value = '';
+    atualizarGrafico();
+  }
+}
+
+const atualizarGrafico = () => {
+  if (chartInstance) {
+    chartInstance.data.datasets[0].data = [entradasTotais.value, saidasTotais.value];
+    chartInstance.update();
   }
 }
 
 onMounted(() => {
-  const ctx = document.getElementById('financeChart')
-  new Chart(ctx, {
+  const ctx = document.getElementById('financeChart');
+  chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Entrada', 'Saída'],
+      labels: ['Entradas', 'Saídas'],
       datasets: [{
-        label: 'Situação Financeira',
-        data: [caixaAtual.value, 1000], 
-        backgroundColor: ['#4CAF50', '#F44336'], 
+        label: 'Movimentação Financeira',
+        data: [entradasTotais.value, saidasTotais.value],
+        backgroundColor: ['#4CAF50', '#F44336'],
         borderWidth: 1
       }]
-    }}
-  )})
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+});
 </script>
 
 <template>
@@ -46,6 +73,7 @@ onMounted(() => {
     <div class="financeiro">
       <header class="header">
         <h1>Visão Financeira da Empresa</h1>
+        <p>Total de Recursos no Caixa: <span class="caixa-atual">R$ {{ caixaAtual.toFixed(2) }}</span></p>
       </header>
 
       <section class="faturas">
@@ -89,7 +117,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <h3>Caixa Atual: R$ {{ caixaAtual.toFixed(2) }}</h3>
+          <h3>Caixa Atual: <span class="caixa-total">R$ {{ caixaAtual.toFixed(2) }}</span></h3>
         </div>
       </section>
 
@@ -106,6 +134,9 @@ onMounted(() => {
 <style scoped>
 .financeiro {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .header {
@@ -115,16 +146,17 @@ onMounted(() => {
 
 .header h1 {
   color: #2C3E50;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
-.faturas {
-  margin-bottom: 30px;
+.caixa-atual {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #4CAF50;
 }
 
 .faturas h2 {
-  margin-bottom: 15px;
   color: white;
   text-align: center;
   background-color: var(--blue);
@@ -137,7 +169,6 @@ table {
   border-collapse: collapse;
   background-color: white;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -157,17 +188,16 @@ table td {
 }
 
 .movimentacao {
-  margin-bottom: 30px;
   background-color: var(--blue);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: white;
 }
 
 .movimentacao h2 {
   margin-bottom: 20px;
   color: white;
+  text-align: center;
 }
 
 .caixa-content {
@@ -181,7 +211,6 @@ input {
   border-radius: 5px;
   font-size: 16px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 button {
@@ -193,7 +222,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
 }
 
 button:hover {
@@ -205,13 +233,18 @@ button:hover {
   font-weight: bold;
 }
 
+.caixa-total {
+  font-size: 1.8rem;
+  color: #4CAF50;
+}
+
 .grafico {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  max-width: 600px; /* Ajusta a largura da seção do gráfico */
+  max-width: 600px;
 }
 
 .grafico h2 {
@@ -221,8 +254,7 @@ button:hover {
 }
 
 .grafico-container {
-  height: 300px; /* Ajusta a altura do gráfico */
-  position: relative;
+  height: 300px;
 }
 
 canvas {
